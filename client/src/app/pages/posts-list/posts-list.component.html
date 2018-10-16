@@ -1,0 +1,121 @@
+<!-- TITLE -->
+<div class="mb-40 mt-40">
+    <h1>Lista Posts</h1>
+</div>
+
+<!-- SEARCH FORM -->
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title border-bottom border-italia">
+            <i class="fa fa-search"></i> Cerca
+        </h5>
+        
+        <form #searchForm="ngForm">
+            <div class="row mt-40 justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label for="category_id">Category_id</label>
+                        <input type="number" class="form-control" id="category_id" [(ngModel)]="search.category_id" name="category_id" #category_id="ngModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="post_author">Post_author</label>
+                        <input type="text" class="form-control" id="post_author" [(ngModel)]="search.post_author" name="post_author" #post_author="ngModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="post_content">Post_content</label>
+                        <input type="text" class="form-control" id="post_content" [(ngModel)]="search.post_content" name="post_content" #post_content="ngModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="post_date" class="active">Post_date</label>
+                        <input type="date" class="form-control" id="post_date" [(ngModel)]="search.post_date" name="post_date" #post_date="ngModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="post_image">Post_image</label>
+                        <input type="text" class="form-control" id="post_image" [(ngModel)]="search.post_image" name="post_image" #post_image="ngModel">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" [(ngModel)]="search.post_status" name="post_status" id="post_status">
+                        <label for="post_status">Post_status</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="post_title">Post_title</label>
+                        <input type="text" class="form-control" id="post_title" [(ngModel)]="search.post_title" name="post_title" #post_title="ngModel">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- TABLE -->
+<table class="table mt-40">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">category_id</th>
+            <th scope="col">post_author</th>
+            <th scope="col">post_content</th>
+            <th scope="col">post_date</th>
+            <th scope="col">post_image</th>
+            <th scope="col">post_status</th>
+            <th scope="col">post_title</th>
+            <th>Rimuovi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of list | search: { 'category_id': search.category_id, 'post_author': search.post_author, 'post_content': search.post_content, 'post_date': search.post_date, 'post_image': search.post_image, 'post_status': search.post_status, 'post_title': search.post_title }">
+            <!-- ATTRIBUTES -->
+            <td>
+                <a [routerLink]="['/postss', item._id]">{{item._id}}</a>
+            </td>
+            <td>{{item.category_id }}</td>
+            <td>{{item.post_author }}</td>
+            <td>{{item.post_content }}</td>
+            <td>{{item.post_date | date }}</td>
+            <td>{{item.post_image }}</td>
+            <td>{{item.post_status }}</td>
+            <td>{{item.post_title }}</td>
+
+            <!-- DELETE BUTTON -->
+            <td>
+                <button class="btn btn-outline-primary btn-xs" data-toggle="modal" data-target="#deleteModal" (click)="selectId(item._id)">
+                    Rimuovi
+                </button>
+            </td>
+        </tr>
+    </tbody>
+    <div class="no-result" *ngIf="(list | search: {   'category_id': search.category_id ,  'post_author': search.post_author ,  'post_content': search.post_content ,  'post_date': search.post_date ,  'post_image': search.post_image ,  'post_status': search.post_status ,  'post_title': search.post_title  }).length == 0">
+        Nessun elemento trovato
+    </div>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <i class="fa fa-times-circle"></i>&nbsp;&nbsp;Rimuovi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Vuoi rimuovere questo elemento?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteItem()">SI</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BUTTON -->
+<button class="btn btn-primary text-center pull-right mb-20" routerLink="/postses/new">
+    <span>
+        <i class="fa fa-plus"></i>
+    </span>
+</button>
+
+<div class="clearfix"></div>

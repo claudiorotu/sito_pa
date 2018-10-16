@@ -1,0 +1,30 @@
+<!-- TITLE -->
+<div class="mb-40 mt-40">
+    <h1>Categories</h1>
+</div>
+<div class="card mb-40">
+    <div class="card-body">
+        <h5 class="card-title border-bottom border-italia">
+            <i class="fa fa-search"></i> Dettaglio
+        </h5>
+        <form #editForm="ngForm" [ngClass]="{'was-validated': formValid!=null}">
+            <div class="row mt-40 justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="cat_title" [(ngModel)]="item.cat_title" name="cat_title" #cat_title="ngModel" >
+                        <label [className]="item.cat_title && item.cat_title.length > 0 ? 'active' : ''" for="cat_title">Cat_title</label>
+                    </div>
+
+
+        
+
+                    <!-- BUTTON BAR -->
+                    <div class="mt-40">
+                        <button class="btn btn-primary pull-right" (click)="save(editForm.valid, item)">Salva</button>
+                        <button class="btn btn-secondary pull-right mr-2" (click)="goBack()">Torna alla lista</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

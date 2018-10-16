@@ -1,0 +1,54 @@
+<!-- TITLE -->
+<div class="mb-40 mt-40">
+    <h1>Posts</h1>
+</div>
+<div class="card mb-40">
+    <div class="card-body">
+        <h5 class="card-title border-bottom border-italia">
+            <i class="fa fa-search"></i> Dettaglio
+        </h5>
+        <form #editForm="ngForm" [ngClass]="{'was-validated': formValid!=null}">
+            <div class="row mt-40 justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="category_id" [(ngModel)]="item.category_id" name="category_id" #category_id="ngModel" >
+                        <label [className]="item.category_id? 'active' : ''" for="category_id">Category_id</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="post_author" [(ngModel)]="item.post_author" name="post_author" #post_author="ngModel" >
+                        <label [className]="item.post_author && item.post_author.length > 0 ? 'active' : ''" for="post_author">Post_author</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="post_content" [(ngModel)]="item.post_content" name="post_content" #post_content="ngModel" >
+                        <label [className]="item.post_content && item.post_content.length > 0 ? 'active' : ''" for="post_content">Post_content</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" id="post_date" [(ngModel)]="item.post_date" name="post_date" #post_date="ngModel" >
+                        <label class="active" for="post_date">Post_date</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="post_image" [(ngModel)]="item.post_image" name="post_image" #post_image="ngModel" >
+                        <label [className]="item.post_image && item.post_image.length > 0 ? 'active' : ''" for="post_image">Post_image</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" [(ngModel)]="item.post_status" name="post_status" id="post_status" >
+                        <label [className]="item.post_status && item.post_status.length > 0 ? 'active' : ''" for="post_status" >Post_status</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="post_title" [(ngModel)]="item.post_title" name="post_title" #post_title="ngModel" >
+                        <label [className]="item.post_title && item.post_title.length > 0 ? 'active' : ''" for="post_title">Post_title</label>
+                    </div>
+
+
+        
+
+                    <!-- BUTTON BAR -->
+                    <div class="mt-40">
+                        <button class="btn btn-primary pull-right" (click)="save(editForm.valid, item)">Salva</button>
+                        <button class="btn btn-secondary pull-right mr-2" (click)="goBack()">Torna alla lista</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

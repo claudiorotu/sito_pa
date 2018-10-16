@@ -1,0 +1,42 @@
+<!-- TITLE -->
+<div class="mb-40 mt-40">
+    <h1>Link</h1>
+</div>
+<div class="card mb-40">
+    <div class="card-body">
+        <h5 class="card-title border-bottom border-italia">
+            <i class="fa fa-search"></i> Dettaglio
+        </h5>
+        <form #editForm="ngForm" [ngClass]="{'was-validated': formValid!=null}">
+            <div class="row mt-40 justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="link" [(ngModel)]="item.link" name="link" #link="ngModel" >
+                        <label [className]="item.link && item.link.length > 0 ? 'active' : ''" for="link">Link</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="link_desc" [(ngModel)]="item.link_desc" name="link_desc" #link_desc="ngModel" >
+                        <label [className]="item.link_desc && item.link_desc.length > 0 ? 'active' : ''" for="link_desc">Link_desc</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="link_order" [(ngModel)]="item.link_order" name="link_order" #link_order="ngModel" >
+                        <label [className]="item.link_order? 'active' : ''" for="link_order">Link_order</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="link_type" [(ngModel)]="item.link_type" name="link_type" #link_type="ngModel" >
+                        <label [className]="item.link_type && item.link_type.length > 0 ? 'active' : ''" for="link_type">Link_type</label>
+                    </div>
+
+
+        
+
+                    <!-- BUTTON BAR -->
+                    <div class="mt-40">
+                        <button class="btn btn-primary pull-right" (click)="save(editForm.valid, item)">Salva</button>
+                        <button class="btn btn-secondary pull-right mr-2" (click)="goBack()">Torna alla lista</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
